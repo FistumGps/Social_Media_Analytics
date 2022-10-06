@@ -14,7 +14,7 @@ import requests  # pip install requests
 import streamlit as st  # pip install streamlit
 from streamlit_lottie import st_lottie  # pip install streamlit-lottie
 #
-from tiktok import get_data
+#from tiktok import get_data
 
 # Import plotly FOR VIZ
 import plotly.express as px
