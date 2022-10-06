@@ -20,7 +20,7 @@ import time
 # Import plotly FOR VIZ
 import plotly.express as px
 # Set page width to wide
-st.set_page_config(page_title= "Social Media Analytics", page_icon=":bar_chart:" ,layout='wide')
+st.set_page_config(page_title= "Social Media Analytics Web App", page_icon=":bar_chart:" ,layout='wide')
 #st.header("Twitter")
 @st.cache
 #lottie Code
