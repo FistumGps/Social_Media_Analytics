@@ -7,7 +7,7 @@ from helpers import process_results
 
  
 def get_data(hashtag): 
-    #query = "rophnan until:2022-09-08 since:2022-07-10"
+    #query = "#EthiopianAirlines until:2022-09-08 since:2022-07-10"
     query = hashtag
     tweets = []
     limit = 100

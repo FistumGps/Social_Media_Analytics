@@ -9,6 +9,7 @@ import pandas as pd
 #import for Lottie Animation 
 import json
 import numpy as np
+import datetime
 
 import requests  # pip install requests
 import streamlit as st  # pip install streamlit
@@ -50,6 +51,23 @@ global text_columns
 #hashtag =  st.text_input('Search for a hashtag here', value ="")
 hashtag =  st.selectbox('Select a hashtag here', options = hastag_options)
 
+# Date selection
+sincecol,untillcoll = st.columns(2)
+
+with sincecol:
+    since = st.date_input(
+    "select startng date you want to analyze",
+    datetime.date(2022, 1, 1))
+    st.write('since date:', since)
+
+with untillcoll:
+    until = st.date_input(
+    "select end date you want to analyze",
+    datetime.date(2022, 10, 9))
+
+    st.write('until date:', until)
+
+
 if hashtag =="#EthiopianAirlines":
         df = pd.read_csv('EthiopianAirlines.csv')
 if hashtag =="#SafaricomEthiopia":
@@ -58,11 +76,11 @@ if hashtag =="#BeuDelivery":
         df = pd.read_csv('BeuDelivery.csv')
 # Create sidebar
 st.sidebar.markdown("<div><img src='https://help.twitter.com/content/dam/help-twitter/brand/logo.png' width=50 /><h1 style='display:inline-block'>Twitter Analytics</h1></div>", unsafe_allow_html=True)
-st.sidebar.markdown("This dashboard allows you to analyse trending 📈  Twitter data.")
+#st.sidebar.markdown("This dashboard allows you to analyse trending 📈  Twitter data.")
               
 st.markdown("""---""")
 # Button
-if st.sidebar.button('Get Additional Data'):
+if st.button('Get Additional Data'):
     # Run get data function here 
     get_data(hashtag)
     # Load existing data to test it out
@@ -92,7 +110,7 @@ if check_box_top:
 
 # Add select widget
 chart_select = st.sidebar.multiselect(
-    label="Chart type",default=['Scatterplots', 'Lineplots','Histogram'],
+    label="Chart type",default='Histogram',
     options=['Scatterplots', 'Lineplots','Histogram','Boxplots']
 )
 
@@ -144,9 +162,9 @@ col2.plotly_chart(fig,use_container_width=True)
 # Second Chart
 #scatter2 = px.scatter(df, x='User_Displayname', y='User_Location', hover_data=['User_Displayname'], size='User_FollowersCount', color='User_FollowersCount')
 #right_col.plotly_chart(scatter2, use_container_width=True)
-df.info()
+#df.info()
 # Show tabular dataframe in streamlit
-check_box_buttom = st.sidebar.checkbox(label = "Display Final Dataset") 
+check_box_buttom = st.sidebar.checkbox(label = "Display Final Dataset",value=True) 
 
 if check_box_buttom:
    st.dataframe(df)
